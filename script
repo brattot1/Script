@@ -74,3 +74,51 @@ ggplot(contingency_df, aes(x = Political_Affiliation, y = Gender, fill = Frequen
     axis.text = element_text(size = 12),
     axis.title = element_text(size = 14)
   )
+
+
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2", "dplyr"))
+
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Example data frame
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  gender = sample(c("Male", "Female"), 100, replace = TRUE),
+  score = rnorm(100, mean = 75, sd = 10),  # Random scores
+  age = sample(18:60, 100, replace = TRUE) # Random ages
+)
+
+# Box Plot: Distribution of `score` by `gender`
+ggplot(data, aes(x = gender, y = score, fill = gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Box Plot of Scores by Gender",
+    x = "Gender",
+    y = "Score"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+# Scatter Plot: Relationship between `age` and `score`
+ggplot(data, aes(x = age, y = score, color = gender)) +
+  geom_point(size = 3, alpha = 0.7) +
+  labs(
+    title = "Scatter Plot of Age vs. Score",
+    x = "Age",
+    y = "Score",
+    color = "Gender"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
