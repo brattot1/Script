@@ -1,0 +1,210 @@
+# Install necessary packages
+install.packages(c("dplyr", "ggplot2", "janitor"))
+
+# Load libraries
+library(dplyr)
+library(ggplot2)
+library(janitor)
+
+# Example dataset
+set.seed(123) # For reproducibility
+data <- data.frame(
+  gender = sample(c("Male", "Female"), 100, replace = TRUE),
+  polaffiliation = sample(c("Democrat", "Republican", "Independent"), 100, replace = TRUE)
+)
+
+# Clean column names for consistency
+data <- data %>% clean_names()
+
+# PART 1: DESCRIPTIVE STATISTICS (Table 1 & 3)
+
+# Gender counts
+gender_counts <- data %>%
+  group_by(gender) %>%
+  summarise(count = n())
+
+# Political affiliation counts
+polaffiliation_counts <- data %>%
+  group_by(polaffiliation) %>%
+  summarise(count = n())
+
+# Summary statistics (base R summary)
+gender_summary <- summary(data$gender)
+polaffiliation_summary <- summary(data$polaffiliation)
+
+cat("\nDescriptive Table for Gender and Political Affiliation:\n")
+cat("\nGender Counts:\n")
+print(gender_counts)
+cat("\nPolitical Affiliation Counts:\n")
+print(polaffiliation_counts)
+
+cat("\nSummary Statistics:\n")
+print(gender_summary)
+print(polaffiliation_summary)
+
+# PART 2: CONTINGENCY TABLE ANALYSIS (Table 2)
+
+# Contingency Table
+contingency_table <- table(data$gender, data$polaffiliation)
+
+cat("\nContingency Table (Gender vs. Political Affiliation):\n")
+print(contingency_table)
+
+# Chi-Squared Test
+chi_test <- chisq.test(contingency_table)
+
+cat("\nChi-squared Test Results:\n")
+print(chi_test)
+
+# Visualize Contingency Table with a Heatmap
+contingency_df <- as.data.frame(as.table(contingency_table))
+colnames(contingency_df) <- c("Gender", "Political_Affiliation", "Frequency")
+
+ggplot(contingency_df, aes(x = Political_Affiliation, y = Gender, fill = Frequency)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = Frequency), color = "black", size = 5) + # Add cell values
+  scale_fill_gradient(low = "white", high = "steelblue") +
+  labs(title = "Contingency Table Heatmap",
+       x = "Political Affiliation",
+       y = "Gender",
+       fill = "Frequency") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2", "dplyr"))
+
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Example data frame
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  gender = sample(c("Male", "Female"), 100, replace = TRUE),
+  score = rnorm(100, mean = 75, sd = 10),  # Random scores
+  age = sample(18:60, 100, replace = TRUE) # Random ages
+)
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2", "dplyr"))
+
+# Load libraries
+library(ggplot2)
+library(dplyr)
+
+# Example data frame
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  gender = sample(c("Male", "Female"), 100, replace = TRUE),
+  score = rnorm(100, mean = 75, sd = 10),  # Random scores
+  age = sample(18:60, 100, replace = TRUE) # Random ages
+)
+
+# Box Plot: Distribution of `score` by `gender`
+ggplot(data, aes(x = gender, y = score, fill = gender)) +
+  geom_boxplot() +
+  labs(
+    title = "Box Plot of Scores by Gender",
+    x = "Gender",
+    y = "Score"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+# Scatter Plot: Relationship between `age` and `score`
+ggplot(data, aes(x = age, y = score, color = gender)) +
+  geom_point(size = 3, alpha = 0.7) +
+  labs(
+    title = "Scatter Plot of Age vs. Score",
+    x = "Age",
+    y = "Score",
+    color = "Gender"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2"))
+
+# Load library
+library(ggplot2)
+
+# Example data frame
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  democratic_party = sample(c("Supporter", "Neutral", "Non-supporter"), 100, replace = TRUE),
+  patriotism = rnorm(100, mean = 75, sd = 10)  # Random patriotism scores
+)
+
+# Box Plot: Patriotism scores by Democratic Party support level
+ggplot(data, aes(x = democratic_party, y = patriotism, fill = democratic_party)) +
+  geom_boxplot() +
+  labs(
+    title = "Patriotism Scores by Democratic Party Support Level",
+    x = "Democratic Party Support Level",
+    y = "Patriotism Score",
+    fill = "Support Level"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 14)
+  )
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2"))
+
+# Load library
+library(ggplot2)
+
+# Example data frame
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  democratic_party = sample(c("Supporter", "Neutral", "Non-supporter"), 100, replace = TRUE),
+  patriotism = rnorm(100, mean = 75, sd = 10)  # Random patriotism scores
+)
+
+# Scatter Plot: Patriotism scores by Democratic Party support level
+# Install necessary packages (if not already installed)
+install.packages(c("ggplot2"))
+
+# Load library
+library(ggplot2)
+
+# Example data frame with both variables as numeric
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  democratic_party = rnorm(100, mean = 50, sd = 10),  # Random numeric support levels for Democratic Party
+  patriotism = rnorm(100, mean = 75, sd = 10)  # Random patriotism scores
+)
+# Example data frame with both variables as numeric
+set.seed(123)  # For reproducibility
+data <- data.frame(
+  democratic_party = rnorm(100, mean = 50, sd = 10),  # Random numeric support levels for Democratic Party
+  patriotism = rnorm(100, mean = 75, sd = 10)  # Random patriotism scores
+)
+
+# Scatter Plot: Relationship between Democratic Party Support and Patriotism Scores
+plot(data$democratic_party, data$patriotism,
+     main = "Scatter Plot of Democratic Party Support vs. Patriotism Scores",  # Title
+     xlab = "Democratic Party Support Level (Numeric)",  # X-axis label
+     ylab = "Patriotism Score",  # Y-axis label
+     pch = 19,  # Point character (solid circles)
+     col = "blue",  # Color of points
+     cex = 1.5)  # Size of points
+
+# Optional: Add a regression line to visualize the relationship
+abline(lm(patriotism ~ democratic_party, data = data), col = "red", lwd = 2)  # Red regression line
+
