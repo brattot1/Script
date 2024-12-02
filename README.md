@@ -10,3 +10,8 @@ R script
 
 In this script, political affiliation and gender are analyzed.
 Conducts tests to find correlation
+
+
+Democratic Party feelings and patriotism numeric variables out of 10
+
+Scatter plot and box plot displaying data
